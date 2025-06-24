@@ -17,6 +17,7 @@ public class DataServiceTests {
         data = new DataService();
         data.loadData(FILE_PATH);
     }
+
     @Test
     void testGetDriverById() {
         assertEquals("Sophie", data.getDriverbyId(1).getName());
@@ -83,6 +84,27 @@ public class DataServiceTests {
         Exception exception1 = assertThrows(IllegalArgumentException.class, () ->
                 data.getDriverSpeeding("S-DE-1111;2024-01-35T19:17:53", ";"));
         assertEquals("Invalid date time format, should in Form: 'yyyy-MM-dd HH:mm:ss'", exception1.getMessage());
+    }
+
+    @Test
+    void testGetDriversOfDay() {
+        assertEquals("Ben Wagner (S-GH-3277), Mia Hoffmann (S-GH-3277).", data.getDriversOfDay("F003;2024-08-13", ";"));
+        // Alphabetical order
+        assertEquals("Anna Hoffmann (S-KL-7613), Lena Hoffmann (S-WX-3158), Max Schneider (S-BC-4566), Mia Fischer (S-BC-4566), Mia Fischer (S-KL-7613), Mia Fischer (S-NO-7724), Mia Fischer (S-NO-7724), Sophie Wagner (S-NO-7724), Tom Mueller (S-BC-4566), Tom Mueller (S-WX-3158), Tom Schmidt (S-NO-7724).", data.getDriversOfDay("F009;2024-01-06", ";"));
+        // Did not drive that day
+        assertEquals(".", data.getDriversOfDay("F029;2024-01-06", ";"));
+
+        Exception exception0 = assertThrows(IllegalArgumentException.class, () ->
+                data.getDriversOfDay("2024-08-13", ";"));
+        assertEquals("Invalid term, should in Form: 'X123;yyyy-MM-dd'", exception0.getMessage());
+
+        Exception exception1 = assertThrows(IllegalArgumentException.class, () ->
+                data.getDriversOfDay("F003;2024-08-35", ";"));
+        assertEquals("Invalid date format, should in Form: 'yyyy-MM-dd'", exception1.getMessage());
+
+        Exception exception2 = assertThrows(IllegalArgumentException.class, () ->
+                data.getDriversOfDay("FF03;2024-08-13", ";"));
+        assertEquals("Invalid id, should in Form: 'X123'", exception2.getMessage());
 
     }
 }

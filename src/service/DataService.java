@@ -3,8 +3,10 @@ package service;
 import model.*;
 import util.modelUtil;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,6 +59,12 @@ public class DataService extends ImportService {
                 .orElseThrow(() -> new IllegalArgumentException("No driver found with id: " + driverId));
     }
 
+    private List<Trip> getTripsOnDay(LocalDate date) {
+        return getTrips().stream()
+                .filter(trip -> trip.isOnDay(date))
+                .collect(Collectors.toList());
+    }
+
     public String getDriverSpeeding(String term, String delimiter) {
         String[] parts = term.split(delimiter);
 
@@ -95,21 +103,55 @@ public class DataService extends ImportService {
         return getDriverbyId(driverId).getFullName();
     }
 
-    //    public List<Car> getCarsDrivenBy(int driverId) {
-    //        List<Car> cars = new ArrayList<>();
-    //        getTripsByDriver(driverId)
-    //                .forEach(trip -> {
-    //                    cars.add(getCarById(trip.getCarId()));
-    //                });
-    //        return cars;
-    //    }
-    //
-    //    public List<Driver> getDriversWhoDrove(int carId) {
-    //        List<Driver> drivers = new ArrayList<>();
-    //        getTripsByCar(carId)
-    //                .forEach(trip -> {
-    //                    drivers.add(getDriverbyId(trip.getDriverId()));
-    //                });
-    //        return drivers;
-    //    }
+    public String getDriversOfDay(String term, String delimiter) {
+        String[] parts = term.split(delimiter);
+
+        if (parts.length != 2) {
+            throw new IllegalArgumentException("Invalid term, should in Form: 'X123;yyyy-MM-dd'");
+        }
+
+        int driverId = modelUtil.formatId(parts[0], true);
+        LocalDate date;
+        try {
+            date = LocalDate.parse(parts[1]);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Invalid date format, should in Form: 'yyyy-MM-dd'");
+        }
+
+        List<Trip> trips = getTripsOnDay(date);
+
+        // Find the cars which the driver has driven that day
+        List<Integer> carIds = new ArrayList<Integer>();
+        trips.stream()
+                .filter(trip -> trip.getDriverId() == driverId)
+                .forEach(trip -> carIds.add(trip.getCarId()));
+
+        trips = trips.stream()
+                .filter(trip -> carIds.contains(trip.getCarId()))
+                .collect(Collectors.toList());
+
+        // List all 'unique' driver and car trips as an Integer for easy filtering
+        List<Integer> uniqueIds = new ArrayList<Integer>();
+
+        // Collect all Result Strings to be sorted later
+        List<String> driverWithNumberplate = new ArrayList<String>();
+
+        trips.forEach(trip -> {
+           int driverIdTrip = trip.getDriverId();
+           int carIdTrip = trip.getCarId();
+           int uniqueId = driverIdTrip * 1000 + carIdTrip;
+
+           if (!uniqueIds.contains(uniqueId) && driverId != driverIdTrip) {
+               uniqueIds.add(uniqueId);
+               String fullNames = getDriverbyId(driverIdTrip).getFullName();
+               String numberPlate = getCarById(carIdTrip).getNumberPlate();
+               driverWithNumberplate.add(fullNames + " (" + numberPlate + ")");
+           }
+        });
+
+        // Sort driverWithNumberplate alphabetically
+        driverWithNumberplate.sort(String::compareTo);
+
+        return driverWithNumberplate.toString().replace("[", "").replace("]", ".");
+    }
 }

@@ -2,6 +2,7 @@ package model;
 
 import util.modelUtil;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
@@ -32,6 +33,10 @@ public class Trip {
 
     public boolean isInTime(LocalDateTime dateTime) {
         return dateTime.isAfter(startDateTime) && dateTime.isBefore(endDateTime);
+    }
+
+    public boolean isOnDay(LocalDate date) {
+        return date.isEqual(startDateTime.toLocalDate());
     }
 
     @Override

@@ -9,7 +9,7 @@ public class modelUtil {
             }
             return Integer.parseInt(id);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid id, should in Form: 'X1234'");
+            throw new IllegalArgumentException("Invalid id, should in Form: 'X123'");
         }
     }
 }
