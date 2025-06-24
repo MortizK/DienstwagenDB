@@ -9,7 +9,5 @@ public class Main {
         DataService data = new DataService();
         String result = data.loadData(filePath);
         System.out.println(result);
-
-
     }
 }

@@ -54,4 +54,19 @@ public class DataServiceTests {
         assertEquals(910, data.getTripsByCar(2).size());
         assertEquals(0, data.getTripsByCar(26).size());
     }
+
+    @Test
+    void testGetDriversByString() {
+        assertEquals(4, data.getDriversByString("Anna").size());
+        assertEquals(9, data.getDriversByString("Hoff").size());
+        assertEquals(0, data.getDriversByString("Thomas").size());
+    }
+
+    @Test
+    void testGetCarsByString() {
+        assertEquals(1, data.getCarsByString("S-BC-4566").size());
+        assertEquals(9, data.getCarsByString("Volkswagen").size());
+        assertEquals(6, data.getCarsByString("Golf").size());
+        assertEquals(0, data.getCarsByString("Porsche").size());
+    }
 }

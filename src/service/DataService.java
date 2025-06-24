@@ -25,6 +25,21 @@ public class DataService extends ImportService {
                 .orElseThrow(() -> new IllegalArgumentException("No car found with id: " + carId));
     }
 
+    public List<Car> getCarsByString(String searchTerm) {
+        return getCars().stream()
+                .filter(car ->
+                        car.getBrand().contains(searchTerm) ||
+                        car.getModel().contains(searchTerm) ||
+                        car.getNumberPlate().contains(searchTerm))
+                .collect(Collectors.toList());
+    }
+
+    public List<Driver> getDriversByString(String searchTerm) {
+        return getDrivers().stream()
+                .filter( driver -> driver.getFullName().contains(searchTerm))
+                .collect(Collectors.toList());
+    }
+
     public Driver getDriverbyId(int driverId) {
         return getDrivers().stream()
                 .filter(car -> car.getId() == driverId)

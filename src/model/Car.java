@@ -32,6 +32,14 @@ public class Car {
         return id;
     }
 
+    public String getModel() {
+        return model;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
     public String getNumberPlate() {
         return numberPlate;
     }
