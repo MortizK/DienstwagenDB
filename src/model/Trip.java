@@ -30,6 +30,10 @@ public class Trip {
         }
     }
 
+    public boolean isInTime(LocalDateTime dateTime) {
+        return dateTime.isAfter(startDateTime) && dateTime.isBefore(endDateTime);
+    }
+
     @Override
     public String toString() {
         return getClass().getName() +

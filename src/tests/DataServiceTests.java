@@ -69,4 +69,20 @@ public class DataServiceTests {
         assertEquals(6, data.getCarsByString("Golf").size());
         assertEquals(0, data.getCarsByString("Porsche").size());
     }
+
+    @Test
+    void testGetDriverSpeeding() {
+        assertEquals("Anna Becker", data.getDriverSpeeding("S-BC-4566;2024-01-01T19:17:53", ";"));
+        assertEquals("Kein Fahrer gefunden", data.getDriverSpeeding("S-BC-4566;2024-01-01T17:17:53", ";"));
+        assertEquals("Kein Fahrer gefunden", data.getDriverSpeeding("S-DE-1111;2024-01-01T19:17:53", ";"));
+
+        Exception exception0 = assertThrows(IllegalArgumentException.class, () ->
+                data.getDriverSpeeding("2024-01-01T19:17:53", ";"));
+        assertEquals("Invalid term, should in Form: 'X123;yyyy-MM-dd HH:mm:ss'", exception0.getMessage());
+
+        Exception exception1 = assertThrows(IllegalArgumentException.class, () ->
+                data.getDriverSpeeding("S-DE-1111;2024-01-35T19:17:53", ";"));
+        assertEquals("Invalid date time format, should in Form: 'yyyy-MM-dd HH:mm:ss'", exception1.getMessage());
+
+    }
 }
