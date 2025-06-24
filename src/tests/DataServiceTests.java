@@ -105,6 +105,5 @@ public class DataServiceTests {
         Exception exception2 = assertThrows(IllegalArgumentException.class, () ->
                 data.getDriversOfDay("FF03;2024-08-13", ";"));
         assertEquals("Invalid id, should in Form: 'X123'", exception2.getMessage());
-
     }
 }

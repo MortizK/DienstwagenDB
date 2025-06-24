@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DataService extends ImportService {
@@ -121,7 +120,7 @@ public class DataService extends ImportService {
         List<Trip> trips = getTripsOnDay(date);
 
         // Find the cars which the driver has driven that day
-        List<Integer> carIds = new ArrayList<Integer>();
+        List<Integer> carIds = new ArrayList<>();
         trips.stream()
                 .filter(trip -> trip.getDriverId() == driverId)
                 .forEach(trip -> carIds.add(trip.getCarId()));
@@ -131,10 +130,10 @@ public class DataService extends ImportService {
                 .collect(Collectors.toList());
 
         // List all 'unique' driver and car trips as an Integer for easy filtering
-        List<Integer> uniqueIds = new ArrayList<Integer>();
+        List<Integer> uniqueIds = new ArrayList<>();
 
         // Collect all Result Strings to be sorted later
-        List<String> driverWithNumberplate = new ArrayList<String>();
+        List<String> driverWithNumberplate = new ArrayList<>();
 
         trips.forEach(trip -> {
            int driverIdTrip = trip.getDriverId();

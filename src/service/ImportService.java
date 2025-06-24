@@ -89,7 +89,7 @@ public class ImportService {
         cars.add(newCar);
     }
 
-    public String getType(String header) {
+    private String getType(String header) {
         boolean driverId = header.startsWith("fahrerId");
         boolean carId = header.contains("fahrzeugId");
 
