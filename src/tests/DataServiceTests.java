@@ -88,11 +88,11 @@ public class DataServiceTests {
 
     @Test
     void testGetDriversOfDay() {
-        assertEquals("Ben Wagner (S-GH-3277), Mia Hoffmann (S-GH-3277).", data.getDriversOfDay("F003;2024-08-13", ";"));
+        assertEquals("Ben Wagner (S-GH-3277), Mia Hoffmann (S-GH-3277)", data.getDriversOfDay("F003;2024-08-13", ";"));
         // Alphabetical order
-        assertEquals("Anna Hoffmann (S-KL-7613), Lena Hoffmann (S-WX-3158), Max Schneider (S-BC-4566), Mia Fischer (S-BC-4566), Mia Fischer (S-KL-7613), Mia Fischer (S-NO-7724), Mia Fischer (S-NO-7724), Sophie Wagner (S-NO-7724), Tom Mueller (S-BC-4566), Tom Mueller (S-WX-3158), Tom Schmidt (S-NO-7724).", data.getDriversOfDay("F009;2024-01-06", ";"));
+        assertEquals("Anna Hoffmann (S-KL-7613), Lena Hoffmann (S-WX-3158), Max Schneider (S-BC-4566), Mia Fischer (S-BC-4566), Mia Fischer (S-KL-7613), Mia Fischer (S-NO-7724), Mia Fischer (S-NO-7724), Paul Weber (S-KL-7613), Sophie Wagner (S-NO-7724), Tom Mueller (S-BC-4566), Tom Mueller (S-WX-3158), Tom Schmidt (S-NO-7724)", data.getDriversOfDay("F009;2024-01-06", ";"));
         // Did not drive that day
-        assertEquals(".", data.getDriversOfDay("F029;2024-01-06", ";"));
+        assertEquals("", data.getDriversOfDay("F029;2024-01-06", ";"));
 
         Exception exception0 = assertThrows(IllegalArgumentException.class, () ->
                 data.getDriversOfDay("2024-08-13", ";"));
@@ -104,6 +104,6 @@ public class DataServiceTests {
 
         Exception exception2 = assertThrows(IllegalArgumentException.class, () ->
                 data.getDriversOfDay("FF03;2024-08-13", ";"));
-        assertEquals("Invalid id, should in Form: 'X123'", exception2.getMessage());
+        assertEquals("Invalid id, should in Form: 'X123' or '123456', but was: 'FF03'!", exception2.getMessage());
     }
 }

@@ -12,7 +12,7 @@ public class Main {
 
         DataService data = new DataService();
         String result = data.loadData(filePath);
-        // System.out.println(result);
+        System.out.println(result);
 
         if (args == null) {
             return;
