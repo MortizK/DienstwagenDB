@@ -36,7 +36,8 @@ public class Trip {
     }
 
     public boolean isOnDay(LocalDate date) {
-        return date.isEqual(startDateTime.toLocalDate());
+        return date.isEqual(startDateTime.toLocalDate()) ||
+                date.isEqual(endDateTime.toLocalDate());
     }
 
     @Override

@@ -151,6 +151,6 @@ public class DataService extends ImportService {
         // Sort driverWithNumberplate alphabetically
         driverWithNumberplate.sort(String::compareTo);
 
-        return driverWithNumberplate.toString().replace("[", "").replace("]", ".");
+        return driverWithNumberplate.toString().replace("[", "").replace("]", "");
     }
 }
