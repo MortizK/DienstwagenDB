@@ -156,6 +156,7 @@ public class ImportService {
      * Getter for the List of all loaded drivers.
      * @return List of all loaded drivers.
      * @see model.Driver Driver Class
+     * @see List List Class
      */
     public List<Driver> getDrivers() {
         return drivers;
@@ -165,6 +166,7 @@ public class ImportService {
      * Getter for the List of all loaded cars.
      * @return List of all loaded cars.
      * @see model.Car Car Class
+     * @see List List Class
      */
     public List<Car> getCars() {
         return cars;

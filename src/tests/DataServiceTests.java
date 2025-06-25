@@ -20,13 +20,13 @@ public class DataServiceTests {
 
     @Test
     void testGetDriverById() {
-        assertEquals("Sophie", data.getDriverbyId(1).getName());
-        assertEquals("Tom", data.getDriverbyId(2).getName());
-        assertEquals("Anna", data.getDriverbyId(10).getName());
+        assertEquals("Sophie", data.getDriverById(1).getName());
+        assertEquals("Tom", data.getDriverById(2).getName());
+        assertEquals("Anna", data.getDriverById(10).getName());
 
         int outOfBoundsId = 51;
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                data.getDriverbyId(outOfBoundsId));
+                data.getDriverById(outOfBoundsId));
         assertEquals("No driver found with id: " + outOfBoundsId, exception.getMessage());
     }
 
@@ -79,7 +79,7 @@ public class DataServiceTests {
 
         Exception exception0 = assertThrows(IllegalArgumentException.class, () ->
                 data.getDriverSpeeding("2024-01-01T19:17:53", ";"));
-        assertEquals("Invalid term, should in Form: 'X123;yyyy-MM-dd HH:mm:ss'", exception0.getMessage());
+        assertEquals("Invalid term, should in Form: 'S-XX-1234;yyyy-MM-dd HH:mm:ss'", exception0.getMessage());
 
         Exception exception1 = assertThrows(IllegalArgumentException.class, () ->
                 data.getDriverSpeeding("S-DE-1111;2024-01-35T19:17:53", ";"));
@@ -96,7 +96,7 @@ public class DataServiceTests {
 
         Exception exception0 = assertThrows(IllegalArgumentException.class, () ->
                 data.getDriversOfDay("2024-08-13", ";"));
-        assertEquals("Invalid term, should in Form: 'X123;yyyy-MM-dd'", exception0.getMessage());
+        assertEquals("Invalid term, should in Form: 'F123;yyyy-MM-dd'", exception0.getMessage());
 
         Exception exception1 = assertThrows(IllegalArgumentException.class, () ->
                 data.getDriversOfDay("F003;2024-08-35", ";"));
