@@ -99,7 +99,7 @@ public class ImportService {
 
     /**
      * Adds a new Car to the List of cars.<br>
-     * Does check for duplicate IDs. If a duplicate is found, the line is skipped and a message is printed to the console.
+     * Does check for duplicate IDs or NumberPlate. If a duplicate is found, the line is skipped and a message is printed to the console.
      * @param line in Form: 'V001, Opel, Corsa, S-BC-4566'
      * @see model.Car Car Class
      */
@@ -108,7 +108,8 @@ public class ImportService {
 
         // Check for duplicate ID
         boolean duplicate = cars.stream()
-                .anyMatch(car -> car.getId() == newCar.getId());
+                .anyMatch(car -> car.getId() == newCar.getId() ||
+                        car.getNumberPlate().equals(newCar.getNumberPlate()));
 
         if (duplicate) {
             System.out.println("Duplicate car ID found! Line: '" + line + "' was skipped!");
