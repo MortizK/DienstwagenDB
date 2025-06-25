@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Class to represent a Trip.
+ */
 public class Trip {
     private int driverId;
     private int carId;
@@ -48,7 +51,7 @@ public class Trip {
 
     /**
      * Return true if the Trip started or ended on the given date.<br>
-     * Since the Trips are Work-related Trips, the start and end date can't be more than 1 day apart.
+     * Since the Trips are business-Trips, the start and end date can't be more than 1 day apart.
      * @param date in Form: 'yyyy-MM-dd'
      * @return true or false
      */

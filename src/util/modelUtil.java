@@ -1,5 +1,8 @@
 package util;
 
+/**
+ * Utility class for the model classes.
+ */
 public class modelUtil {
     /**
      * Formats the id of a driver or car to an int.

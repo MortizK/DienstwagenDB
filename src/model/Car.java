@@ -2,6 +2,9 @@ package model;
 
 import util.modelUtil;
 
+/**
+ * Class to represent a Car.
+ */
 public class Car {
     private int id;
     private String brand;

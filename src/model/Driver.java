@@ -2,6 +2,9 @@ package model;
 
 import util.modelUtil;
 
+/**
+ * Class to represent a Driver.
+ */
 public class Driver {
     private int id;
     private String name;
