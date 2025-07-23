@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>98</y>
+      <w>147</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>Importservice
+--
+- String NEW_ENTITY
+- String DELIMITER
+
+- List&lt;Trip&gt; trips
+- List&lt;Driver&gt; drivers
+- List&lt;Car&gt; cars
+--
++ loadData(String filePath)
+- addTrip(String line)
+- addDriver(String line)
+- addCar(String line)
+- getType(String header)
++ getter()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>231</x>
+      <y>98</y>
+      <w>273</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>Dataservice
+extends ImportService
+--
++ List&lt;Trip&gt; getTripsByDriver(int driverId)
++ List&lt;Trip&gt; getTripsByCar(int carId)
++ Car getCarsById(int carId)
++ List&lt;Car&gt; getCarsByString(String searchTerm)
++ List&lt;Car&gt; getCarByNumberPlate(String numberPlate)
++ List&lt;Driver&gt; getDriversByString(String searchTerm)
++ Driver getDriveById(int driverId)
++ List&lt;Trip&gt; getTripsOnDay(LocalDate date)
++ String getDriverSpeeding(String term, String delimiter)
++ String getDriversOfDay(String term, String delimiter)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>154</x>
+      <y>182</y>
+      <w>91</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>343</y>
+      <w>168</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Car
+--
+- int id
+- String brand
+- String model
+- String numberPlate
+--
++ Car(String term, String delimiter)
++ toString()
++ getter()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>343</y>
+      <w>168</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Driver
+--
+- int id
+- String name
+- String surname
+- String driverLicenseClass
+--
++ Driver(String term, String delimiter)
++ toString()
++ getter()
++ getFullName()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>413</x>
+      <y>343</y>
+      <w>168</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Trip
+--
+- int driverId
+- int carId
+- int startKm
+- int endKm
+- LocalDateTime startDateTime
+- LocalDateTime endDateTime
+--
++ Trips(String term, String delimiter)
++ isInTime(LocalDateTime dateTime)
++ isOnDay(LocalDate date)
++ toString()
++ getter()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>553</y>
+      <w>168</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>DataServiceTester
+--
+- String FILE_PATH
+- DataService data
+--
+@BeforeAll initAll()
+@Test testGetDriverById()
+@Test testGetCarById()
+@Test testGetTripsByDriver()
+@Test testGetTripsByCar()
+@Test testGetDriversByString()
+@Test testGetCarsByString()
+@Test testGetDriverSpeeding()
+@Test testGetDriversOfDay()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>553</y>
+      <w>168</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>ImportServiceTester
+--
+- String FILE_PATH
+- ImportService data
+--
+@BeforeEach init()
+@Test testLoadData()
+@Test testLoadDataEmptyFile()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>658</x>
+      <y>385</y>
+      <w>273</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>modelUtil
+--
++ int formatId(String id, boolean removeFirstChar)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>413</x>
+      <y>553</y>
+      <w>168</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Main
+--
++ void main(String[] args)</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
