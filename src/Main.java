@@ -1,5 +1,4 @@
-import model.Car;
-import model.Driver;
+import model.*;
 import service.*;
 
 import java.util.List;

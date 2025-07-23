@@ -4,12 +4,12 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>14</x>
-      <y>98</y>
+      <x>371</x>
+      <y>350</y>
       <w>147</w>
       <h>182</h>
     </coordinates>
-    <panel_attributes>Importservice
+    <panel_attributes>service::Importservice
 --
 - String NEW_ENTITY
 - String DELIMITER
@@ -23,19 +23,20 @@
 - addDriver(String line)
 - addCar(String line)
 - getType(String header)
-+ getter()</panel_attributes>
++ getter()
+bg=CYAN</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>231</x>
-      <y>98</y>
+      <x>588</x>
+      <y>350</y>
       <w>273</w>
       <h>182</h>
     </coordinates>
-    <panel_attributes>Dataservice
-extends ImportService
+    <panel_attributes>service::Dataservice
+extends service::ImportService
 --
 + List&lt;Trip&gt; getTripsByDriver(int driverId)
 + List&lt;Trip&gt; getTripsByCar(int carId)
@@ -46,29 +47,31 @@ extends ImportService
 + Driver getDriveById(int driverId)
 + List&lt;Trip&gt; getTripsOnDay(LocalDate date)
 + String getDriverSpeeding(String term, String delimiter)
-+ String getDriversOfDay(String term, String delimiter)</panel_attributes>
++ String getDriversOfDay(String term, String delimiter)
+bg=CYAN</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>154</x>
-      <y>182</y>
+      <x>511</x>
+      <y>427</y>
       <w>91</w>
-      <h>21</h>
+      <h>28</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+extends</panel_attributes>
+    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>14</x>
-      <y>343</y>
+      <x>119</x>
+      <y>497</y>
       <w>168</w>
       <h>112</h>
     </coordinates>
-    <panel_attributes>Car
+    <panel_attributes>model::Car
 --
 - int id
 - String brand
@@ -77,18 +80,19 @@ extends ImportService
 --
 + Car(String term, String delimiter)
 + toString()
-+ getter()</panel_attributes>
++ getter()
+bg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>343</y>
+      <x>119</x>
+      <y>357</y>
       <w>168</w>
       <h>126</h>
     </coordinates>
-    <panel_attributes>Driver
+    <panel_attributes>model::Driver
 --
 - int id
 - String name
@@ -98,18 +102,19 @@ extends ImportService
 + Driver(String term, String delimiter)
 + toString()
 + getter()
-+ getFullName()</panel_attributes>
++ getFullName()
+bg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>413</x>
-      <y>343</y>
+      <x>119</x>
+      <y>189</y>
       <w>168</w>
       <h>154</h>
     </coordinates>
-    <panel_attributes>Trip
+    <panel_attributes>model::Trip
 --
 - int driverId
 - int carId
@@ -122,18 +127,19 @@ extends ImportService
 + isInTime(LocalDateTime dateTime)
 + isOnDay(LocalDate date)
 + toString()
-+ getter()</panel_attributes>
++ getter()
+bg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>14</x>
-      <y>553</y>
+      <x>588</x>
+      <y>595</y>
       <w>168</w>
       <h>154</h>
     </coordinates>
-    <panel_attributes>DataServiceTester
+    <panel_attributes>test::DataServiceTester
 --
 - String FILE_PATH
 - DataService data
@@ -146,18 +152,19 @@ extends ImportService
 @Test testGetDriversByString()
 @Test testGetCarsByString()
 @Test testGetDriverSpeeding()
-@Test testGetDriversOfDay()</panel_attributes>
+@Test testGetDriversOfDay()
+bg=GREEN</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>553</y>
+      <x>364</x>
+      <y>595</y>
       <w>168</w>
-      <h>154</h>
+      <h>105</h>
     </coordinates>
-    <panel_attributes>ImportServiceTester
+    <panel_attributes>test::ImportServiceTester
 --
 - String FILE_PATH
 - ImportService data
@@ -165,33 +172,169 @@ extends ImportService
 @BeforeEach init()
 @Test testLoadData()
 @Test testLoadDataEmptyFile()
-</panel_attributes>
+
+bg=GREEN</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>658</x>
-      <y>385</y>
+      <x>14</x>
+      <y>119</y>
       <w>273</w>
       <h>42</h>
     </coordinates>
-    <panel_attributes>modelUtil
+    <panel_attributes>util::modelUtil
 --
-+ int formatId(String id, boolean removeFirstChar)</panel_attributes>
++ int formatId(String id, boolean removeFirstChar)
+bg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>413</x>
-      <y>553</y>
+      <x>588</x>
+      <y>252</y>
       <w>168</w>
       <h>42</h>
     </coordinates>
     <panel_attributes>Main
 --
-+ void main(String[] args)</panel_attributes>
++ void main(String[] args)
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>665</x>
+      <y>287</y>
+      <w>21</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>441</y>
+      <w>105</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;170.0;70.0;170.0;70.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>413</y>
+      <w>105</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>280</y>
+      <w>105</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0;70.0;160.0;130.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>77</x>
+      <y>154</y>
+      <w>56</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;170.0;10.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>49</x>
+      <y>154</y>
+      <w>84</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>100.0;380.0;10.0;380.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>21</x>
+      <y>154</y>
+      <w>112</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;580.0;10.0;580.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>434</x>
+      <y>525</y>
+      <w>42</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+testet</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>665</x>
+      <y>525</y>
+      <w>42</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+testet</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>364</x>
+      <y>714</y>
+      <w>119</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>Es gibt eine Test DB
+welche leer ist
+bg=GREEN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>588</x>
+      <y>203</y>
+      <w>119</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>Der Pfad zur DB wird in
+main() festegelegt
+bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
